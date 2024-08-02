@@ -234,10 +234,11 @@ mod build_bundled {
                             "Unsupported OS. You must use either Linux, MacOS or Windows to build the crate."
                         ),
                     };
+                    const DEFAULT_CLANG_VERSION: &str = "12.0.9";
                     let clang_version =
                         env::var("NDK_CLANG_VERSION").unwrap_or_else(|_| DEFAULT_CLANG_VERSION.to_owned());
                     let linux_x86_64_lib_dir = format!(
-                        "toolchains/llvm/prebuilt/{build_os}-x86_64/lib/clang/{clang_version}/lib/linux/"
+                        "toolchains/llvm/prebuilt/{build_os}-x86_64/lib64/clang/{clang_version}/lib/linux/"
                     );
                     let linkpath = format!("{android_ndk_home}/{linux_x86_64_lib_dir}");
                     if Path::new(&linkpath).exists() {
